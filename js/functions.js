@@ -29,7 +29,7 @@ function createTable(array) {
         if (array === cars) {
             setText(tableCellName, object.Brand);
             buttonBuy.remove();
-            buttonSell.remove();
+            // buttonSell.remove();
         }
 
         tableRow.addEventListener('click', function(event) {
@@ -75,12 +75,16 @@ function createTable(array) {
         // }                                                                                    // Вариант №2
 
         if (object.Car) {                                                                       // Вариант №1
-            buttonSell = createButton('Sell Car', 'button', object, tableCellActions);          // Вариант №1
+            let buttonSell = createButton('Sell Car', 'button', object, tableCellActions);      // Вариант №1
+            if (array == cars) {
+                buttonSell.remove();
+            } 
             buttonSell.addEventListener('click', () => {                                        // Вариант №1
                 currentObject.sellCar(currentCar);                                              // Вариант №1
                 closeWindow(buttonSell);                                                        // Вариант №1
             });
         }
+        
     });       
 }
 
@@ -343,6 +347,9 @@ function confirmPurchase(currentObject, object, currentCar) {
     buttonPurchase.addEventListener('click', () => {
         console.log(currentCar);
         currentObject.buyCar(currentCar);
+        clearContainer(infoWindow);                                                    // !
+        // clearContainer(table);                                                      // !
+        // createTable(users);                                                         // !
     });
 
     buttonCancel.addEventListener('click', () => closeWindow(box));
@@ -350,7 +357,7 @@ function confirmPurchase(currentObject, object, currentCar) {
     setText(cell, "Are you sure?");
 }
 
-function messageNotEnoughMoney(object) {
+function messageNotEnoughMoney(currentObject, object) {
     clearContainer(infoWindow);
 
     let box = createElement('div', 'info-window__box', object, infoWindow);

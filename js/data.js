@@ -9,7 +9,7 @@ function Method() {
             clearContainer(infoWindow);
             setToLocalStorage();                                                // setToLocalStorage
         } else {
-            messageNotEnoughMoney(object);
+            messageNotEnoughMoney(currentObject);
         }
         console.log(this);
     };
@@ -92,4 +92,4 @@ const infoWindow = document.getElementById('info-window');
 
 let currentObject;
 let currentCar;
-let buttonSell;                                                    // Вариант №2
+// let buttonSell;                                                    // Вариант №2

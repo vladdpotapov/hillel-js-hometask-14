@@ -1,9 +1,8 @@
 'use strict';
 
-// getFromLocalStorage();
+getFromLocalStorage();
 
 buttonShowUsersList.addEventListener('click', () => {
-    getFromLocalStorage();
     clearContainer(table);
     clearContainer(infoWindow);
     clearContainer(infoBox);
@@ -11,7 +10,6 @@ buttonShowUsersList.addEventListener('click', () => {
 });
 
 buttonShowCompaniesList.addEventListener('click', () => {
-    getFromLocalStorage();
     clearContainer(table);
     clearContainer(infoWindow);
     clearContainer(infoBox);
@@ -19,7 +17,6 @@ buttonShowCompaniesList.addEventListener('click', () => {
 });
 
 buttonShowCarsList.addEventListener('click', () => {
-    getFromLocalStorage();
     clearContainer(table);
     clearContainer(infoWindow);
     clearContainer(infoBox);
