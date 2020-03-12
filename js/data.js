@@ -11,14 +11,14 @@ function Method() {
         } else {
             messageNotEnoughMoney(currentObject);
         }
-        console.log(this);
+        // console.log(this);
     };
 
     this.sellCar = function(currentCar) {
         this.Balance = this.Balance + currentCar.Price;
         delete this.Car;
         setToLocalStorage();                                                    // setToLocalStorage
-        console.log(this);
+        // console.log(this);
     }
 }
 

@@ -160,6 +160,24 @@ function changeInfo(array, object) {
 
     Object.keys(object).forEach(function(key, index) {
         object[key] = inputsValues[index];
+        if (typeof object.Id === 'string') {
+            object.Id = parseInt(inputs[index].value);
+        }
+        if (typeof object.Age === 'string') {
+            object.Age = parseInt(inputs[index].value);
+        }
+        if (typeof object.Balance === 'string') {
+            object.Balance = parseInt(inputs[index].value);
+        }
+        if (typeof object.Employees === 'string') {
+            object.Employees = parseInt(inputs[index].value);
+        }
+        if (typeof object.Power === 'string') {
+            object.Power = parseInt(inputs[index].value);
+        }
+        if (typeof object.Price === 'string') {
+            object.Price = parseInt(inputs[index].value);
+        }
     });
 }
 
@@ -192,6 +210,7 @@ function pushNewObject(array, object) {             // setToLocalStorage
     clearContainer(table);
 
     let newObject = {};
+    newObject.__proto__ = new Method();
     let inputs = document.querySelectorAll('.inputs');
 
     for (let key in object) {
@@ -203,6 +222,24 @@ function pushNewObject(array, object) {             // setToLocalStorage
 
     Object.keys(newObject).forEach(function(key, index) {
         newObject[key] = inputs[index].value;
+        if (typeof newObject.Id === 'string') {
+            newObject.Id = parseInt(inputs[index].value);
+        }
+        if (typeof newObject.Age === 'string') {
+            newObject.Age = parseInt(inputs[index].value);
+        }
+        if (typeof newObject.Balance === 'string') {
+            newObject.Balance = parseInt(inputs[index].value);
+        }
+        if (typeof newObject.Employees === 'string') {
+            newObject.Employees = parseInt(inputs[index].value);
+        }
+        if (typeof newObject.Power === 'string') {
+            newObject.Power = parseInt(inputs[index].value);
+        }
+        if (typeof newObject.Price === 'string') {
+            newObject.Price = parseInt(inputs[index].value);
+        }
     });
 
     let isValid = validateInputs(array);
@@ -210,7 +247,7 @@ function pushNewObject(array, object) {             // setToLocalStorage
         array.push(newObject);
         createTable(array);
         clearContainer(infoWindow);
-        setToLocalStorage();                                                                // setToLocalStorage
+        setToLocalStorage();                          // setToLocalStorage
     }
 }
 
@@ -345,7 +382,7 @@ function confirmPurchase(currentObject, object, currentCar) {
     buttonCancel.classList.add('button__service');
 
     buttonPurchase.addEventListener('click', () => {
-        console.log(currentCar);
+        // console.log(currentCar);
         currentObject.buyCar(currentCar);
         clearContainer(infoWindow);                                                    // !
         // clearContainer(table);                                                      // !
@@ -555,7 +592,21 @@ function getFromLocalStorage() {
         users = defaultUsers;
         return;
     }
+    
+    for (let i = 0; i < usersArray.length; i++) {
+        let values = Object.values(usersArray[i]);
+        usersArray[i] = new Human();
+        for (let key in usersArray[i]) {
+            usersArray[i].Car = values[i];
+        }
+        Object.keys(usersArray[i]).forEach(function(key, index) {
+            usersArray[i][key] = values[index];
+        });
+        usersArray[i].__proto__ = new Method();    
+    }
+
     users = usersArray;
+    console.log(users);
 
     if (!localStorage.getItem('Companies')) {
         companies = defaultCompanies;
@@ -568,7 +619,20 @@ function getFromLocalStorage() {
         companies = defaultCompanies;
         return;
     }
+    for (let i = 0; i < companiesArray.length; i++) {
+        let values = Object.values(companiesArray[i]);
+        companiesArray[i] = new Company();
+        for (let key in companiesArray[i]) {
+            companiesArray[i].Car = values[i];
+        }
+        Object.keys(companiesArray[i]).forEach(function(key, index) {
+            companiesArray[i][key] = values[index];
+        });
+        companiesArray[i].__proto__ = new Method();    
+    }
     companies = companiesArray;
+    console.log(companies);
+
 
     if (!localStorage.getItem('Cars')) {
         cars = defaultCars;
@@ -582,4 +646,6 @@ function getFromLocalStorage() {
         return;
     }
     cars = carsArray;
+    console.log(cars);
+
 }
